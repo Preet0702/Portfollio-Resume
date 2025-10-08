@@ -63,9 +63,36 @@
       .reveal{transition:none}
       html{scroll-behavior:auto}
     }
+    .theme-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s ease}
+    .theme-modal.show{opacity:1;pointer-events:all}
+    .theme-modal-content{background:var(--panel);border:1px solid color-mix(in oklab,var(--muted) 30%,transparent);border-radius:var(--radius);padding:32px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.5);transform:scale(0.9);transition:transform .3s ease}
+    .theme-modal.show .theme-modal-content{transform:scale(1)}
+    .theme-modal h2{margin-top:0;text-align:center}
+    .theme-options{display:flex;gap:16px;margin-top:24px}
+    .theme-option{flex:1;padding:24px;border-radius:12px;border:2px solid color-mix(in oklab,var(--muted) 30%,transparent);background:color-mix(in oklab,var(--panel) 50%,transparent);cursor:pointer;text-align:center;transition:all .2s ease}
+    .theme-option:hover{border-color:var(--brand);transform:translateY(-2px)}
+    .theme-option:active{transform:translateY(0)}
+    .theme-option .icon{font-size:48px;margin-bottom:12px}
+    .theme-option .label{font-weight:600;font-size:16px}
   </style>
 </head>
 <body>
+  <div id="themeModal" class="theme-modal">
+    <div class="theme-modal-content">
+      <h2>Choose Your Theme</h2>
+      <p style="text-align:center;color:var(--muted);margin-bottom:8px">Select your preferred color scheme</p>
+      <div class="theme-options">
+        <div class="theme-option" data-theme="dark">
+          <div class="icon">🌙</div>
+          <div class="label">Dark Mode</div>
+        </div>
+        <div class="theme-option" data-theme="light">
+          <div class="icon">☀️</div>
+          <div class="label">Light Mode</div>
+        </div>
+      </div>
+    </div>
+  </div>
   <a class="skip" href="#main">Skip to content</a>
   <nav class="nav" aria-label="Primary">
     <div class="container nav-inner">
@@ -205,8 +232,16 @@
     const onScroll=()=>{const y=scrollY+120;secs.forEach((s,i)=>{if(!s)return;const top=s.offsetTop,b=top+s.offsetHeight;const active=y>=top&&y<b;tabs[i].toggleAttribute('aria-current',active);tabs[i].classList.toggle('active',active);})};
     addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-    const root=document.documentElement,btn=document.getElementById('themeToggle');
-    if(localStorage.getItem('theme')==='light') root.classList.add('light');
+    const root=document.documentElement,btn=document.getElementById('themeToggle'),modal=document.getElementById('themeModal');
+    const savedTheme=localStorage.getItem('theme');
+    if(savedTheme==='light') root.classList.add('light');
+    if(!savedTheme){setTimeout(()=>modal.classList.add('show'),500);}
+    document.querySelectorAll('.theme-option').forEach(opt=>opt.addEventListener('click',()=>{
+      const theme=opt.dataset.theme;
+      root.classList.toggle('light',theme==='light');
+      localStorage.setItem('theme',theme);
+      modal.classList.remove('show');
+    }));
     btn.addEventListener('click',()=>{root.classList.toggle('light');localStorage.setItem('theme',root.classList.contains('light')?'light':'dark');});
 
     document.querySelectorAll('.cert-btn').forEach(el=>el.addEventListener('click',()=>{
