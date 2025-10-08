@@ -8,78 +8,37 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg: #0b1220; --panel:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --brand:#38bdf8; --brand-2:#a78bfa; --ring: rgba(56,189,248,.45);
-      --shadow: 0 8px 30px rgba(2,6,23,.45);
-    }
-    :root.light{
-      --bg:#f8fafc; --panel:#ffffff; --muted:#4b5563; --text:#0b1220; --brand:#0ea5e9; --brand-2:#7c3aed; --ring: rgba(2,132,199,.25);
-      --shadow: 0 8px 30px rgba(2,6,23,.1);
-    }
+    :root{ --bg:#0b1220; --panel:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --brand:#38bdf8; --brand-2:#a78bfa; --ring:rgba(56,189,248,.45); --shadow:0 8px 30px rgba(2,6,23,.45);}  
+    :root.light{ --bg:#f8fafc; --panel:#ffffff; --muted:#4b5563; --text:#0b1220; --brand:#0ea5e9; --brand-2:#7c3aed; --ring:rgba(2,132,199,.25); --shadow:0 8px 30px rgba(2,6,23,.1);} 
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background: radial-gradient(1200px 800px at 20% -10%, rgba(56,189,248,.15), transparent 60%), radial-gradient(900px 700px at 120% 10%, rgba(167,139,250,.15), transparent 60%), var(--bg); color:var(--text);}
-    a{color:var(--brand); text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{width:min(1100px,92vw); margin:0 auto}
-    .nav{position:sticky; top:0; z-index:50; backdrop-filter: blur(12px); background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom:1px solid color-mix(in oklab, var(--muted) 40%, transparent);}
-    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}
-    .badge{font-size:12px; padding:4px 8px; border:1px solid color-mix(in oklab, var(--brand) 60%, transparent); border-radius:999px; color:var(--brand)}
-    .tabs{display:flex; gap:10px; flex-wrap:wrap}
-    .tab{padding:10px 14px; border-radius:12px; background: color-mix(in oklab, var(--panel) 80%, transparent); color:var(--text); border:1px solid color-mix(in oklab, var(--muted) 30%, transparent); box-shadow: var(--shadow); cursor:pointer}
-    .tab.active{outline:2px solid var(--ring);}
-
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:radial-gradient(1200px 800px at 20% -10%,rgba(56,189,248,.15),transparent 60%),radial-gradient(900px 700px at 120% 10%,rgba(167,139,250,.15),transparent 60%),var(--bg);color:var(--text)}
+    a{color:var(--brand)} a:hover{text-decoration:underline}
+    .container{width:min(1100px,92vw);margin:0 auto}
+    .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:color-mix(in oklab,var(--bg) 85%,transparent);border-bottom:1px solid color-mix(in oklab,var(--muted) 40%,transparent)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .badge{font-size:12px;padding:4px 8px;border:1px solid color-mix(in oklab,var(--brand) 60%,transparent);border-radius:999px;color:var(--brand)}
+    .tabs{display:flex;gap:10px;flex-wrap:wrap}
+    .tab{padding:10px 14px;border-radius:12px;background:color-mix(in oklab,var(--panel) 80%,transparent);border:1px solid color-mix(in oklab,var(--muted) 30%,transparent);box-shadow:var(--shadow)}
     section{scroll-margin-top:84px}
-    .hero{padding:60px 0 30px; display:grid; grid-template-columns:1.1fr .9fr; gap:32px; align-items:center}
-    .card{background:linear-gradient(180deg, color-mix(in oklab, var(--panel) 90%, transparent), color-mix(in oklab, var(--panel) 94%, transparent)); border:1px solid color-mix(in oklab, var(--muted) 24%, transparent); border-radius:18px; padding:22px; box-shadow: var(--shadow)}
-    .hero h1{font-size:clamp(28px, 4vw, 44px); margin:0 0 12px; line-height:1.1}
-    .subtitle{color:var(--muted); font-weight:500; margin-bottom:18px}
-    .cta{display:flex; gap:12px; flex-wrap:wrap}
-    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; border:1px solid color-mix(in oklab, var(--brand) 45%, transparent); background: color-mix(in oklab, var(--brand) 15%, var(--panel)); color:var(--text); cursor:pointer; text-decoration:none; font-weight:600; box-shadow: var(--shadow)}
-    .btn.secondary{background:transparent; border-color: color-mix(in oklab, var(--muted) 40%, transparent)}
-
-    .grid{display:grid; gap:16px}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}.grid.cols-3{grid-template-columns:1fr}}
-
-    h2{font-size:clamp(22px, 3vw, 28px); margin:20px 0}
-    .stat{display:flex; align-items:center; gap:12px; padding:14px; border-radius:12px; background: color-mix(in oklab, var(--panel) 90%, transparent); border:1px solid color-mix(in oklab, var(--muted) 25%, transparent)}
-
-    /* timeline */
-    .timeline{position:relative;}
-    .timeline:before{content:""; position:absolute; left:10px; top:0; bottom:0; width:2px; background: color-mix(in oklab, var(--muted) 35%, transparent)}
-    .t-item{position:relative; margin-left:34px; padding:14px 14px 14px 18px; border-left:3px solid transparent}
-    .t-item:before{content:""; position:absolute; left:-26px; top:18px; width:12px; height:12px; border-radius:50%; background: var(--brand); box-shadow:0 0 0 4px color-mix(in oklab, var(--brand) 30%, transparent)}
-    .t-item .where{color:var(--brand); font-weight:700}
-
-    /* skills chips */
-    .chips{display:flex; flex-wrap:wrap; gap:10px}
-    .chip{padding:8px 12px; border-radius:999px; border:1px solid color-mix(in oklab, var(--muted) 35%, transparent); color:var(--muted); background: color-mix(in oklab, var(--panel) 92%, transparent); font-weight:600}
-
-    /* footer */
-    footer{margin:40px 0 80px; color:var(--muted); text-align:center}
-
-    /* modal */
-    dialog{width:min(900px,94vw); border:none; border-radius:16px; padding:0; overflow:hidden; box-shadow: var(--shadow); background:var(--panel)}
-    dialog::backdrop{background:rgba(2,6,23,.6)}
-    .modal-head{display:flex; justify-content:space-between; align-items:center; padding:14px 16px; border-bottom:1px solid color-mix(in oklab, var(--muted) 24%, transparent)}
-    .modal-body{padding:0; height:min(80vh, 900px)}
-    .modal-body iframe{width:100%; height:100%; border:0}
-
-    /* reveal animations */
-    .reveal{opacity:0; transform: translateY(20px); transition: all .6s cubic-bezier(.2,.8,.2,1)}
-    .reveal.show{opacity:1; transform:none}
-
-    /* theme toggle */
-    .toggle{display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:12px; background: color-mix(in oklab, var(--panel) 92%, transparent); border:1px solid color-mix(in oklab, var(--muted) 28%, transparent); cursor:pointer}
+    .hero{padding:50px 0 16px}
+    .card{background:linear-gradient(180deg,color-mix(in oklab,var(--panel) 90%,transparent),color-mix(in oklab,var(--panel) 94%,transparent));border:1px solid color-mix(in oklab,var(--muted) 24%,transparent);border-radius:18px;padding:22px;box-shadow:var(--shadow);margin:18px 0}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid color-mix(in oklab,var(--brand) 45%,transparent);background:color-mix(in oklab,var(--brand) 15%,var(--panel));color:var(--text);font-weight:600}
+    .btn.secondary{background:transparent;border-color:color-mix(in oklab,var(--muted) 40%,transparent)}
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{padding:8px 12px;border-radius:999px;border:1px solid color-mix(in oklab,var(--muted) 35%,transparent);color:var(--muted);background:color-mix(in oklab,var(--panel) 92%,transparent);font-weight:600}
+    .cert-btn{cursor:pointer;color:var(--brand);font-weight:600}
+    .cert-desc{display:none;margin-top:8px;color:var(--muted)}
+    .show{opacity:1 !important;transform:none !important}
+    .reveal{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.2,.8,.2,1)}
+    footer{margin:40px 0 80px;color:var(--muted);text-align:center}
   </style>
 </head>
 <body>
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand">
-        <span style="display:inline-flex; width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow:0 6px 16px var(--ring)"></span>
+        <span style="display:inline-flex;width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 6px 16px var(--ring)"></span>
         <span>Preet Patel</span>
         <span class="badge">UGA • Data Science</span>
       </div>
@@ -89,122 +48,111 @@
         <a class="tab" href="#experience" role="tab">Experience</a>
         <a class="tab" href="#skills" role="tab">Skills</a>
         <a class="tab" href="#contact" role="tab">Contact</a>
-        <button id="themeToggle" class="toggle" title="Toggle light/dark">🌙<span>Theme</span></button>
+        <button id="themeToggle" class="btn secondary" title="Toggle light/dark">🌙 Theme</button>
       </div>
     </div>
   </nav>
 
   <header class="container hero">
-    <div class="card reveal">
+    <div class="card reveal show">
       <h1>Student data scientist who loves useful insights</h1>
-      <p class="subtitle">University of Georgia • Data Science major • Business and CS minors • looking for a Summer internship where I can build, learn, and ship.</p>
-      <div class="cta">
-        <button class="btn" id="openResume">📄 View Resume</button>
-        <a class="btn secondary" href="#contact">📬 Contact</a>
-        <a class="btn" href="https://www.linkedin.com/in/preet-patel726/" target="_blank">🔗 LinkedIn</a>
-      </div>
-      <div class="grid cols-3" style="margin-top:16px">
-        <div class="stat"><strong>Python + SQL</strong>  pandas, NumPy, basic ML</div>
-        <div class="stat">Customer–first mindset from real work experience</div>
-        <div class="stat">Team leadership through community volunteering</div>
-      </div>
-    </div>
-    <div class="card reveal">
-      <h2 style="margin-top:0">Quick intro</h2>
-      <p>I like clear questions, clean data, and readable code. I’m comfortable in Python, SQL, and spreadsheets. I care about delivering small wins fast then iterating. I enjoy working with people as much as with data.</p>
-      <div class="chips" style="margin-top:14px">
-        <span class="chip">Python</span>
-        <span class="chip">SQL</span>
-        <span class="chip">Pandas</span>
-        <span class="chip">Visualization</span>
-        <span class="chip">Problem solving</span>
+      <p>University of Georgia • Data Science major • Business and CS minors • looking for a Summer internship where I can build, learn, and ship.</p>
+      <div class="chips" style="margin-top:10px">
+        <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Pandas</span><span class="chip">Visualization</span>
       </div>
     </div>
   </header>
 
   <main class="container">
-    <section id="about" class="reveal">
-      <h2>About</h2>
+    <!-- ABOUT -->
+    <section id="about" class="reveal show">
       <div class="card">
-        <p>I’m Preet from Athens and Lilburn, Georgia. I’m building a strong foundation in data analysis and business. I’ve managed teams and operations at Subway which taught me ownership and pacing. I also lead youth programs at BAPS Atlanta where I run two hour assemblies and events. I’m ready to bring that same energy to a data team.</p>
+        <h2>About</h2>
+        <p>I’m Preet from Athens and Lilburn, Georgia. I’m building a strong foundation in data analysis and business. I’ve managed teams and operations at Subway which taught me ownership and pacing. I also lead youth programs at BAPS Atlanta where I run two‑hour assemblies and events.</p>
       </div>
     </section>
 
-    <section id="education" class="reveal">
-      <h2>Education and certificates</h2>
-      <div class="grid">
-        <div class="card timeline">
-          <div class="t-item">
-            <div class="where">University of Georgia</div>
-            <div><strong>B.S. Data Science</strong> • Class of 2028 • Minor in Business and Computer Science</div>
-          </div>
-          <div class="t-item">
-            <div class="where">Brookwood High School</div>
-            <div>Class of 2024</div>
-          </div>
+    <!-- EDUCATION as separate bubbles -->
+    <section id="education" class="reveal show">
+      <h2>Education</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3 style="margin-top:0">University of Georgia</h3>
+          <p><strong>B.S. Data Science</strong> — Class of 2028</p>
+          <p>Minors: Business & Computer Science</p>
         </div>
         <div class="card">
-          <h3 style="margin:0 0 10px">Certifications</h3>
-          <ul>
-            <li>Google IT Support Professional Certificate</li>
-            <li>UC Davis – SQL for Data Science</li>
-            <li>IBM – Data Science Specialization</li>
+          <h3 style="margin-top:0">Brookwood High School</h3>
+          <p>Class of 2024</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Certifications</h3>
+          <ul style="margin:0 0 8px 18px">
+            <li><span class="cert-btn" data-target="c1">Google | Coursera — Professional IT Certificate (2022)</span></li>
+            <div id="c1" class="cert-desc">Completed Google IT Support Professional Certificate, gaining foundational skills in networking, operating systems, system administration, and cybersecurity. <br>Certification: <a target="_blank" href="https://coursera.org/share/7c0adde56482bef9ddc1961c4391c631">View Credential</a></div>
+            <li style="margin-top:8px"><span class="cert-btn" data-target="c2">UC Davis | Coursera — SQL for Data Science (2025)</span></li>
+            <div id="c2" class="cert-desc">Hands‑on SQL for analysis: querying, filtering/sorting, UNION, string/date/number functions. <br>Certification: <a target="_blank" href="https://coursera.org/share/9cffd5e21ecd0db993b8a72ceee403e7">View Credential</a></div>
+            <li style="margin-top:8px"><span class="cert-btn" data-target="c3">IBM | Coursera — Data Science Specialization (2025)</span></li>
+            <div id="c3" class="cert-desc">12‑course sequence across Python, SQL, ML, and visualization with end‑to‑end projects. <br>Certification: <a target="_blank" href="https://coursera.org/share/3e181b2f28d9f5a1ee939dd4a4f8ffd3">View Credential</a></div>
           </ul>
         </div>
       </div>
     </section>
 
-    <section id="experience" class="reveal">
-      <h2>Experience and leadership</h2>
-      <div class="grid">
+    <!-- EXPERIENCE & LEADERSHIP each as its own bubble -->
+    <section id="experience" class="reveal show">
+      <h2>Experience & Leadership</h2>
+      <div class="grid cols-3">
         <div class="card">
-          <h3 style="margin:0">Subway • Manager</h3>
+          <h3 style="margin-top:0">Subway — Manager</h3>
           <p>2025 – Present</p>
           <ul>
-            <li>Handled inventory, scheduling, and daily ops while keeping quality up.</li>
-            <li>Kept POS and systems running, tracked orders, and solved problems on the spot.</li>
+            <li>Kept track of and organized money</li>
+            <li>Worked with other employees to create a schedule</li>
+            <li>Took care of and maintained computer systems</li>
+            <li>Placed and took care of orders and inventory</li>
           </ul>
         </div>
         <div class="card">
-          <h3 style="margin:0">BAPS Atlanta • Group Lead</h3>
+          <h3 style="margin-top:0">Subway — Cashier / Sandwich Artist</h3>
+          <p>2022 – 2023</p>
+          <ul>
+            <li>Operated cash register; processed payments, returns, and exchanges</li>
+            <li>Kept checkout area clean and organized</li>
+            <li>Opened/closed: counted cash, restocked, and cleaned</li>
+            <li>Completed food prep</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">BAPS Atlanta — Group Lead</h3>
           <p>2022 – Present</p>
           <ul>
-            <li>Lead weekly youth assemblies and organize monthly programs.</li>
-            <li>Coordinate volunteers and create activities that keep people engaged.</li>
+            <li>Lead weekly youth assemblies and organize monthly programs</li>
+            <li>Coordinate volunteers and create engaging activities</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section id="skills" class="reveal">
+    <!-- SKILLS -->
+    <section id="skills" class="reveal show">
       <h2>Skills</h2>
       <div class="card">
         <div class="chips">
-          <span class="chip">Python</span>
-          <span class="chip">SQL</span>
-          <span class="chip">Pandas</span>
-          <span class="chip">NumPy</span>
-          <span class="chip">Jupyter</span>
-          <span class="chip">Data viz</span>
-          <span class="chip">Excel</span>
-          <span class="chip">Team leadership</span>
-          <span class="chip">Time management</span>
-          <span class="chip">Video editing</span>
+          <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Jupyter</span>
+          <span class="chip">Data Viz</span><span class="chip">Excel</span><span class="chip">Team Leadership</span><span class="chip">Time Management</span><span class="chip">Video Editing</span>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="reveal">
+    <!-- CONTACT -->
+    <section id="contact" class="reveal show">
       <h2>Contact</h2>
       <div class="card">
-        <p><strong>Phone:</strong> <a href="tel:14704694288">470‑469‑4288</a></p>
+        <p><strong>Phone:</strong> <a href="tel:14704694288">470-469-4288</a></p>
         <p><strong>Email:</strong> <a href="mailto:preetk0702@gmail.com">preetk0702@gmail.com</a></p>
         <p><strong>Location:</strong> Athens / Lilburn, GA</p>
         <p><strong>LinkedIn:</strong> <a target="_blank" href="https://www.linkedin.com/in/preet-patel726/">linkedin.com/in/preet-patel726</a></p>
-        <div class="cta" style="margin-top:10px">
-          <button class="btn" id="openResume2">Open Resume</button>
-          <a class="btn secondary" href="[NEW]Preet Patel - Resume.pdf" download>Download PDF</a>
-        </div>
       </div>
     </section>
   </main>
@@ -213,57 +161,21 @@
     <div class="container">© <span id="year"></span> Preet Patel • Built for internships and growth • Hosted on GitHub Pages</div>
   </footer>
 
-  <!-- Resume Modal -->
-  <dialog id="resumeModal" aria-label="Resume preview">
-    <div class="modal-head">
-      <strong>Resume</strong>
-      <button class="btn secondary" id="closeResume">Close</button>
-    </div>
-    <div class="modal-body">
-      <iframe src="[NEW]Preet Patel - Resume.pdf"></iframe>
-    </div>
-  </dialog>
-
   <script>
-    // Smooth scroll + active tab highlight
-    const tabs = [...document.querySelectorAll('.tab')];
-    const sections = tabs.map(t => document.querySelector(t.getAttribute('href')));
-    tabs.forEach(t => t.addEventListener('click', e => { e.preventDefault(); document.querySelector(t.getAttribute('href')).scrollIntoView({behavior:'smooth'}); }));
-    const onScroll = () => {
-      const y = window.scrollY + 120;
-      sections.forEach((s,i)=>{
-        if(!s) return; const top = s.offsetTop; const bottom = top + s.offsetHeight; const active = y >= top && y < bottom;
-        tabs[i].classList.toggle('active', active);
-      });
-    };
-    document.addEventListener('scroll', onScroll, {passive:true});
-    onScroll();
-
-    // Reveal on view
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
-    }, {threshold:.15});
-    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
-
-    // Theme toggle with localStorage
-    const root = document.documentElement;
-    const toggle = document.getElementById('themeToggle');
-    const saved = localStorage.getItem('theme');
-    if(saved === 'light') root.classList.add('light');
-    const setTheme = () => {
-      root.classList.toggle('light');
-      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
-    };
-    toggle.addEventListener('click', setTheme);
-
-    // Resume modal
-    const modal = document.getElementById('resumeModal');
-    const openers = [document.getElementById('openResume'), document.getElementById('openResume2')].filter(Boolean);
-    openers.forEach(btn => btn.addEventListener('click', ()=> modal.showModal()));
-    document.getElementById('closeResume').addEventListener('click', ()=> modal.close());
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // smooth scroll + active tabs
+    const tabs=[...document.querySelectorAll('.tab')];
+    const secs=tabs.map(t=>document.querySelector(t.getAttribute('href')));
+    tabs.forEach(t=>t.addEventListener('click',e=>{e.preventDefault();document.querySelector(t.getAttribute('href')).scrollIntoView({behavior:'smooth'})}));
+    const onScroll=()=>{const y=scrollY+120;secs.forEach((s,i)=>{if(!s)return;const top=s.offsetTop,b=top+s.offsetHeight;tabs[i].classList.toggle('active',y>=top&&y<b);})};
+    addEventListener('scroll',onScroll,{passive:true}); onScroll();
+    // theme
+    const root=document.documentElement,btn=document.getElementById('themeToggle');
+    if(localStorage.getItem('theme')==='light') root.classList.add('light');
+    btn.addEventListener('click',()=>{root.classList.toggle('light');localStorage.setItem('theme',root.classList.contains('light')?'light':'dark');});
+    // cert toggles
+    document.querySelectorAll('.cert-btn').forEach(el=>el.addEventListener('click',()=>{const d=document.getElementById(el.dataset.target);d.style.display=d.style.display==='block'?'none':'block';}));
+    // year
+    document.getElementById('year').textContent=new Date().getFullYear();
   </script>
 </body>
 </html>
