@@ -1,292 +1,786 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Preet Patel | Data Science @ UGA</title>
-  <meta name="description" content="Preet Patel, UGA Data Science student. Curious, hands-on, and ready to help teams turn data into useful decisions." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs/%3E%3Crect rx='14' width='64' height='64' fill='%2338bdf8'/%3E%3Cpath d='M20 44l12-24 12 24' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <title>Preet Patel | Portfolio</title>
+  <meta name="description" content="Preet Patel portfolio: projects, experience, and impact beyond the resume." />
+
   <style>
-    :root{ --bg:#0b1220; --panel:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --brand:#38bdf8; --brand-2:#a78bfa; --ring:rgba(56,189,248,.45); --shadow:0 8px 30px rgba(2,6,23,.45); --radius:18px;}
-    :root.light{ --bg:#f8fafc; --panel:#ffffff; --muted:#4b5563; --text:#0b1220; --brand:#0ea5e9; --brand-2:#7c3aed; --ring:rgba(2,132,199,.25); --shadow:0 8px 30px rgba(2,6,23,.1);}
+    :root{
+      --bg: #090b10;
+
+      /* UGA-ish accents (red + dark) but still subtle */
+      --accent: #b00020;          /* deep red */
+      --accent2:#3b82f6;          /* blue depth */
+      --accentSoft: rgba(176,0,32,.14);
+
+      --surface: rgba(18, 14, 18, .78);
+      --surface2: rgba(18, 14, 18, .72);
+      --text: #f5f3f7;
+      --muted: #b9b2bf;
+      --line: rgba(255,255,255,.10);
+      --line2: rgba(255,255,255,.14);
+      --shadow: 0 14px 40px rgba(0,0,0,.42);
+      --radius: 18px;
+
+      --max: 1120px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
     *{box-sizing:border-box}
-    html:focus-within{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:
-      radial-gradient(1200px 800px at 20% -10%,rgba(56,189,248,.15),transparent 60%),
-      radial-gradient(900px 700px at 120% 10%,rgba(167,139,250,.15),transparent 60%),
-      var(--bg);color:var(--text);line-height:1.55}
-    a{color:var(--brand)} a:hover{text-decoration:underline}
-    img{max-width:100%;display:block}
-    .container{width:min(1100px,92vw);margin:0 auto}
-    .skip{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
-    .skip:focus{left:16px;top:16px;width:auto;height:auto;background:var(--panel);border-radius:10px;padding:10px 14px;border:1px solid color-mix(in oklab,var(--muted) 30%,transparent)}
-    .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:color-mix(in oklab,var(--bg) 85%,transparent);border-bottom:1px solid color-mix(in oklab,var(--muted) 40%,transparent)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:10px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-    .badge{font-size:12px;padding:4px 8px;border:1px solid color-mix(in oklab,var(--brand) 60%,transparent);border-radius:999px;color:var(--brand)}
-    .tabs{display:flex;gap:8px;flex-wrap:wrap}
-    .tab{padding:10px 14px;border-radius:12px;background:color-mix(in oklab,var(--panel) 80%,transparent);border:1px solid color-mix(in oklab,var(--muted) 30%,transparent);box-shadow:var(--shadow);text-decoration:none}
-    .tab[aria-current="true"]{outline:2px solid var(--brand)}
-    .cta{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid color-mix(in oklab,var(--brand) 45%,transparent);background:color-mix(in oklab,var(--brand) 15%,var(--panel));color:var(--text);font-weight:600;text-decoration:none}
-    .btn.secondary{background:transparent;border-color:color-mix(in oklab,var(--muted) 40%,transparent)}
-    .btn:focus-visible{outline:3px solid var(--ring)}
-    .hero{padding:56px 0 16px}
-    .hero-card{display:grid;grid-template-columns:1fr;gap:18px}
-    .card{background:linear-gradient(180deg,color-mix(in oklab,var(--panel) 90%,transparent),color-mix(in oklab,var(--panel) 94%,transparent));border:1px solid color-mix(in oklab,var(--muted) 24%,transparent);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin:18px 0}
-    h1,h2,h3{margin:0 0 10px}
-    h1{font-size:clamp(28px,4vw,40px);letter-spacing:-0.02em}
-    h2{font-size:clamp(20px,2.4vw,28px)}
-    h3{font-size:clamp(18px,2vw,22px)}
-    .muted{color:var(--muted)}
-    .chips{display:flex;flex-wrap:wrap;gap:10px}
-    .chip{padding:8px 12px;border-radius:999px;border:1px solid color-mix(in oklab,var(--muted) 35%,transparent);color:var(--muted);background:color-mix(in oklab,var(--panel) 92%,transparent);font-weight:600}
-    .grid{display:grid;gap:18px}
-    .cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    @media (max-width:900px){.cols-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media (max-width:640px){.cols-3,.cols-2{grid-template-columns:1fr}}
-    section{scroll-margin-top:84px}
-    .reveal{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.2,.8,.2,1)}
-    .show{opacity:1 !important;transform:none !important}
-    footer{margin:40px 0 80px;color:var(--muted);text-align:center}
-    @media print{
-      body{background:white;color:black}
-      .nav,.btn,.tabs,.cta{display:none !important}
-      .card{box-shadow:none;border:0;padding:0;margin:0}
-      a{color:black;text-decoration:none}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1100px 650px at 14% -8%, rgba(176,0,32,.22), transparent 55%),
+        radial-gradient(900px 600px at 95% 12%, rgba(59,130,246,.14), transparent 55%),
+        radial-gradient(900px 520px at 55% 110%, rgba(176,0,32,.12), transparent 55%),
+        var(--bg);
+      line-height:1.55;
     }
-    @media (prefers-reduced-motion: reduce){
-      .reveal{transition:none}
-      html{scroll-behavior:auto}
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 80px}
+
+    /* Nav */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      margin: 10px 0 18px;
+      padding: 10px 12px;
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.28);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      overflow:auto;
     }
-    .theme-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s ease}
-    .theme-modal.show{opacity:1;pointer-events:all}
-    .theme-modal-content{background:var(--panel);border:1px solid color-mix(in oklab,var(--muted) 30%,transparent);border-radius:var(--radius);padding:32px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.5);transform:scale(0.9);transition:transform .3s ease}
-    .theme-modal.show .theme-modal-content{transform:scale(1)}
-    .theme-modal h2{margin-top:0;text-align:center}
-    .theme-options{display:flex;gap:16px;margin-top:24px}
-    .theme-option{flex:1;padding:24px;border-radius:12px;border:2px solid color-mix(in oklab,var(--muted) 30%,transparent);background:color-mix(in oklab,var(--panel) 50%,transparent);cursor:pointer;text-align:center;transition:all .2s ease}
-    .theme-option:hover{border-color:var(--brand);transform:translateY(-2px)}
-    .theme-option:active{transform:translateY(0)}
-    .theme-option .icon{font-size:48px;margin-bottom:12px}
-    .theme-option .label{font-weight:600;font-size:16px}
+    .nav .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding-left: 6px;
+      white-space:nowrap;
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(176,0,32,.12);
+      flex:0 0 auto;
+    }
+    .brand b{font-weight:780; letter-spacing:.2px}
+    .brand span{color:var(--muted); font-size:13px}
+
+    .navlinks{
+      display:flex;
+      gap:6px;
+      align-items:center;
+      flex-wrap:nowrap;
+      white-space:nowrap;
+    }
+    .navlinks a{
+      text-decoration:none;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid transparent;
+      color:var(--muted);
+      font-weight:650;
+      font-size:13px;
+      transition: background .2s ease, border-color .2s ease, color .2s ease;
+    }
+    .navlinks a:hover{
+      background: rgba(255,255,255,.05);
+      border-color: var(--line);
+      color: var(--text);
+    }
+    .navlinks a.active{
+      background: var(--accentSoft);
+      border-color: rgba(176,0,32,.34);
+      color: var(--text);
+    }
+
+    /* Intro */
+    header{
+      position: relative;
+      overflow:hidden;
+      padding: 28px 24px;
+      background: linear-gradient(180deg, rgba(22,14,18,.88), rgba(14,10,14,.78));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items:start;
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 940px){ .heroGrid{grid-template-columns:1fr} }
+
+    .title h1{margin:0; font-size: 36px; letter-spacing:.2px}
+    .title p{margin: 10px 0 0; color: var(--muted); max-width: 68ch; font-size: 15px}
+
+    .pillbar{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      color: var(--muted);
+      text-decoration:none;
+      font-size:14px;
+    }
+    .pill strong{color: var(--text); font-weight:720}
+
+    .heroCard{
+      padding:16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+    }
+    .heroCard b{display:block; font-size:14px}
+    .heroCard .muted{color:var(--muted); font-size:13px; margin-top:6px}
+
+    .heroArt{
+      position:absolute;
+      inset: -120px -120px auto auto;
+      width: 520px;
+      height: 520px;
+      opacity: .55;
+      z-index: 1;
+      pointer-events:none;
+    }
+    .heroArt2{
+      position:absolute;
+      inset: auto auto -180px -180px;
+      width: 520px;
+      height: 520px;
+      opacity: .32;
+      z-index: 1;
+      pointer-events:none;
+    }
+
+    /* General sections */
+    section{
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 26px rgba(0,0,0,.26);
+      backdrop-filter: blur(10px);
+    }
+    h2{margin:0 0 12px; font-size:19px; letter-spacing:.2px}
+    h3{margin:16px 0 10px; font-size:16px}
+    .muted{color: var(--muted)}
+    .anchor{scroll-margin-top: 92px;}
+    .sectionline{height:1px; background: var(--line); margin: 12px 0 16px}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    @media (max-width: 940px){ .grid{grid-template-columns:1fr} }
+
+    .stack{display:flex; flex-direction:column; gap:12px}
+
+    .item{
+      padding:16px;
+      border-radius:16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+    }
+
+    .row{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .meta{font-family: var(--mono); font-size: 12px; color: var(--muted)}
+    ul{margin:10px 0 0 18px; padding:0}
+    li{margin:7px 0}
+
+    .impact{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(176,0,32,.07);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .chip{
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .btnRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .btn{
+      appearance:none;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      padding:11px 14px;
+      border-radius:14px;
+      cursor:pointer;
+      text-decoration:none;
+      font-weight:720;
+      font-size:14px;
+      transition: transform .08s ease, border-color .2s ease, background .2s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(176,0,32,.42);
+      background: rgba(176,0,32,.08);
+    }
+
+    .contentDivider{
+      margin: 22px 0 18px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.20), transparent);
+    }
+
+    .sectionSpacer{margin-top:18px}
+    footer{margin-top: 18px; color: var(--muted); font-size: 12px; text-align:center}
+
+    /* Featured Project module */
+    .featuredWrap{
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid var(--line2);
+      background: linear-gradient(180deg, rgba(12,10,14,.62), rgba(12,10,14,.42));
+      box-shadow: 0 14px 34px rgba(0,0,0,.30);
+    }
+    .featuredTitle{
+      font-size: 22px;
+      margin: 0 0 12px;
+      letter-spacing:.15px;
+    }
+    .featuredTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top: 2px;
+    }
+    .featuredTopLeft .tools{
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .featuredTopLeft .linkline{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .featuredTopLeft .linkline a{
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .featuredDate{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+
+    .kpiGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    @media (max-width: 860px){ .kpiGrid{grid-template-columns:1fr} }
+
+    .kpiCard{
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line2);
+      background: rgba(255,255,255,.03);
+    }
+    .kpiCard b{display:block; font-size:16px; margin-bottom:6px}
+    .kpiCard span{display:block; color: var(--muted); font-size: 13px}
+
+    .featuredH3{
+      margin-top: 18px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      letter-spacing:.1px;
+    }
+
+    .calloutList{
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line2);
+      background: rgba(255,255,255,.03);
+    }
+
+    /* Quick link card -> projects section */
+    .quickCardBtn{
+      display:block;
+      width:100%;
+      text-align:left;
+      text-decoration:none;
+      cursor:pointer;
+      transition: transform .08s ease, border-color .2s ease, background .2s ease;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding:16px;
+    }
+    .quickCardBtn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(176,0,32,.42);
+      background: rgba(176,0,32,.06);
+    }
+    .quickCardBtn:focus{
+      outline: 2px solid rgba(176,0,32,.45);
+      outline-offset: 3px;
+    }
+    .quickCardBtn .pillLabel{
+      display:inline-flex;
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(176,0,32,.07);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
   </style>
 </head>
+
 <body>
-  <div id="themeModal" class="theme-modal">
-    <div class="theme-modal-content">
-      <h2>Choose Your Theme</h2>
-      <p style="text-align:center;color:var(--muted);margin-bottom:8px">Select your preferred color scheme</p>
-      <div class="theme-options">
-        <div class="theme-option" data-theme="dark">
-          <div class="icon">🌙</div>
-          <div class="label">Dark Mode</div>
-        </div>
-        <div class="theme-option" data-theme="light">
-          <div class="icon">☀️</div>
-          <div class="label">Light Mode</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <a class="skip" href="#main">Skip to content</a>
-  <nav class="nav" aria-label="Primary">
-    <div class="container nav-inner">
+  <div class="wrap">
+
+    <nav class="nav" aria-label="Primary navigation">
       <div class="brand">
-        <span aria-hidden="true" style="display:inline-flex;width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 6px 16px var(--ring)"></span>
-        <span>Preet Patel</span>
-        <span class="badge">UGA | Data Science</span>
-      </div>
-      <div class="tabs" role="tablist">
-        <a class="tab" href="#about" role="tab">About</a>
-        <a class="tab" href="#experience" role="tab">Experience</a>
-        <a class="tab" href="#education" role="tab">Education</a>
-        <a class="tab" href="#projects" role="tab">Projects</a>
-        <a class="tab" href="#skills" role="tab">Skills</a>
-        <a class="tab" href="#contact" role="tab">Contact</a>
-        <button id="themeToggle" class="btn secondary" title="Toggle light and dark">🌙 Theme</button>
-      </div>
-    </div>
-  </nav>
-
-  <header class="container hero">
-    <div class="card hero-card reveal show">
-      <div>
-        <h1>Learning data by doing</h1>
-        <p class="muted">University of Georgia, Data Science major, Business, Statistics, and CS minors. I like clean data, clear visuals, and projects that help teams move faster. I am looking for a internship where I can build, learn, and ship.</p>
-        <div class="chips" style="margin-top:10px">
-          <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Pandas</span><span class="chip">Visualization</span>
-        </div>
-        <div class="cta" style="margin-top:14px">
-
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <b>Preet Patel</b><br/>
+          <span>Resume companion portfolio</span>
         </div>
       </div>
-    </div>
-  </header>
 
-  <main id="main" class="container">
-    <!-- ABOUT -->
-    <section id="about" class="reveal show">
-      <div class="card">
+      <div class="navlinks" id="navlinks">
+        <a class="active" href="#introduction" data-target="introduction">Introduction</a>
+        <a href="#experience" data-target="experience">Experience</a>
+        <a href="#education" data-target="education">Education</a>
+        <a href="#certifications" data-target="certifications">Certifications</a>
+        <a href="#projects" data-target="projects">Projects</a>
+        <a href="#volunteering" data-target="volunteering">Volunteering</a>
+        <a href="#skills" data-target="skills">Skills</a>
+      </div>
+    </nav>
+
+    <!-- INTRODUCTION -->
+    <header id="introduction" class="anchor">
+      <svg class="heroArt" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#b00020" stop-opacity="0.55"/>
+            <stop offset="1" stop-color="#3b82f6" stop-opacity="0.35"/>
+          </linearGradient>
+        </defs>
+        <circle cx="320" cy="250" r="210" fill="url(#g1)"/>
+        <circle cx="410" cy="210" r="150" fill="#b00020" fill-opacity="0.10"/>
+        <circle cx="260" cy="320" r="170" fill="#3b82f6" fill-opacity="0.08"/>
+      </svg>
+
+      <svg class="heroArt2" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="300" cy="300" r="240" fill="#b00020" fill-opacity="0.05"/>
+        <circle cx="330" cy="330" r="170" fill="#3b82f6" fill-opacity="0.04"/>
+      </svg>
+
+      <div class="heroGrid">
+        <div class="title">
+          <h1>Preet Patel</h1>
+          <p>
+            This site supports my resume by adding deeper project detail, clearer impact, and context that does not fit on one page.
+          </p>
+
+          <div class="pillbar">
+            <a class="pill" href="mailto:preet@preetp.me"><strong>Email</strong> preet@preetp.me</a>
+            <a class="pill" href="tel:+14704694288"><strong>Phone</strong> (470) 469-4288</a>
+            <a class="pill" href="https://preetp.me" target="_blank" rel="noreferrer"><strong>Site</strong> preetp.me</a>
+            <a class="pill" href="https://www.linkedin.com/in/preet-patel726" target="_blank" rel="noreferrer"><strong>LinkedIn</strong> /preet-patel726</a>
+          </div>
+        </div>
+
+        <div class="heroCard">
+          <b>Focus</b>
+          <div class="muted">Data analytics, business analytics, and product-focused data work.</div>
+          <div class="sectionline"></div>
+          <b>Featured</b>
+          <div class="muted">Athens Airbnb Market Intelligence Tool (Python, SQL, Streamlit, JMP).</div>
+          <div class="btnRow">
+            <a class="btn" href="#projects">View projects</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid sectionSpacer">
+      <section>
         <h2>About</h2>
-        <p>I am Preet, from Athens and Lilburn, Georgia. I am building a strong base in data analysis and business. I have managed teams and daily operations at Subway which taught me ownership and pacing. I also lead youth programs at BAPS Atlanta where I plan two hour assemblies and events weekly.</p>
-      </div>
-    </section>
+        <div class="sectionline"></div>
 
-    <!-- EXPERIENCE & LEADERSHIP -->
-    <section id="experience" class="reveal show">
-      <h2>Experience and leadership</h2>
-      <div class="grid cols-3">
-        <div class="card">
-          <h3 style="margin-top:0">SSP Automotive LLC</h3>
-          <p>Business Operations Intern, 2024-2025</p>
-          <ul>
-            <li>Assisted with daily dealership operations including sales support and inventory management</li>
-            <li>Researched and sourced vehicles through online auctions and dealer platforms</li>
-            <li>Prepared paperwork for titles, registrations, and customer transactions</li>
-            <li>Gained hands-on experience in dealership management and vehicle sourcing</li>
-          </ul>
+        <p class="muted">
+          I am a University of Georgia student pursuing a B.S. in Data Science with a minor in Computer Science, Statistics, and Business.
+          I am currently looking for an internship where I can learn from a strong team, build real-world experience, and grow my skills in analytics, SQL, and building simple data tools that support decisions.
+        </p>
+
+        <div class="chips">
+          <span class="chip">Curious + coachable</span>
+          <span class="chip">Strong work ethic</span>
+          <span class="chip">Python + SQL</span>
+          <span class="chip">Streamlit dashboards</span>
+          <span class="chip">Statistical validation (JMP)</span>
         </div>
-        <div class="card">
-          <h3 style="margin-top:0">Subway</h3>
-          <p>Manager, 2024-2024</p>
-          <ul>
-            <li>Tracked cash and daily reports with care and accuracy</li>
-            <li>Built weekly schedules that matched traffic and staff availability</li>
-            <li>Maintained store computer systems and handled basic troubleshooting</li>
-            <li>Placed orders, checked inventory, and reduced avoidable waste</li>
-          </ul>
+      </section>
+
+      <section>
+        <h2>Quick Links</h2>
+        <div class="sectionline"></div>
+
+        <div class="stack">
+          <a class="quickCardBtn" href="#projects" aria-label="Jump to Projects section">
+            <div class="row">
+              <div>
+                <b>Athens Airbnb Market Intelligence Tool</b>
+                <div class="muted">Pricing intelligence for Athens hosts using local demand signals.</div>
+              </div>
+              <div class="meta">Dec 2025</div>
+            </div>
+            <div class="pillLabel">Project</div>
+          </a>
         </div>
-        <div class="card">
-          <h3 style="margin-top:0">Subway</h3>
-          <p>Cashier/Sandwich Artist, 2022 to 2023</p>
+      </section>
+    </div>
+
+    <div class="contentDivider" aria-hidden="true"></div>
+
+    <!-- EXPERIENCE -->
+    <section class="anchor sectionSpacer" id="experience">
+      <h2>Experience</h2>
+      <div class="sectionline"></div>
+
+      <div class="stack">
+        <div class="item">
+          <div class="row">
+            <div>
+              <b>SSP Automotive LLC. | Business Operations Intern</b>
+              <div class="muted">Snellville, GA</div>
+            </div>
+            <div class="meta">May 2024 to Aug 2025</div>
+          </div>
           <ul>
-            <li>Operated the register and handled payments, returns, and exchanges</li>
-            <li>Kept the checkout area clean and organized during rush hours</li>
-            <li>Opened and closed the store, counted cash, restocked, and cleaned</li>
-            <li>Completed food prep while keeping quality and speed in balance</li>
+            <li>Sourced vehicles using auction and market pricing data to support buying decisions.</li>
+            <li>Maintained inventory visibility for incoming and active vehicles to reduce missed follow-ups.</li>
+            <li>Prepared registration and title documentation to improve speed and accuracy of processing.</li>
+            <li>Supported daily dealership operations across sales, paperwork, and logistics.</li>
           </ul>
+          <div class="impact">
+            Impact: Improved operational consistency by tightening tracking and paperwork flow so decisions and handoffs happened faster.
+          </div>
         </div>
-        <div class="card">
-          <h3 style="margin-top:0">BAPS Atlanta, Group Lead</h3>
-          <p>2022 to present</p>
+
+        <div class="item">
+          <div class="row">
+            <div>
+              <b>Subway | Manager</b>
+              <div class="muted">Snellville, GA</div>
+            </div>
+            <div class="meta">Jan 2024 to May 2024</div>
+          </div>
           <ul>
-            <li>Led weekly youth assemblies and planned monthly programs</li>
-            <li>Coordinated volunteers and created activities that keep people engaged</li>
+            <li>Managed daily operations and coordinated scheduling for a 10+ person team.</li>
+            <li>Handled inventory, ordering, and daily sales reporting to prevent stockouts during peak hours.</li>
+            <li>Owned opening and closing routines, cash handling, and POS reliability.</li>
+            <li>Coached service routines during rush periods to keep quality consistent.</li>
           </ul>
+          <div class="impact">
+            Impact: Increased peak-hour reliability by strengthening routines around staffing, inventory, and closeouts.
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="row">
+            <div>
+              <b>Subway | Cashier / Sandwich Artist</b>
+              <div class="muted">Snellville, GA</div>
+            </div>
+            <div class="meta">May 2022 to Dec 2023</div>
+          </div>
+          <ul>
+            <li>Handled payments accurately under high volume.</li>
+            <li>Kept the front area organized so lines moved faster during rushes.</li>
+            <li>Completed food prep while meeting quality and speed expectations.</li>
+            <li>Supported opening and closing tasks including restocks, cleaning, and cash counts.</li>
+          </ul>
+          <div class="impact">
+            Impact: Built strong execution habits: speed, accuracy, and staying calm under pressure.
+          </div>
         </div>
       </div>
     </section>
 
     <!-- EDUCATION -->
-    <section id="education" class="reveal show">
+    <section class="anchor sectionSpacer" id="education">
       <h2>Education</h2>
-      <div class="grid cols-3">
-        <div class="card">
-          <h3 style="margin-top:0">University of Georgia</h3>
-          <p><strong>B.S. Data Science</strong>, Class of 2028</p>
-          <p>Minors: Business, Statistics and Computer Science</p>
+      <div class="sectionline"></div>
+
+      <div class="item">
+        <div class="row">
+          <div>
+            <b>University of Georgia</b>
+            <div class="muted">B.S. Data Science</div>
+            <div class="muted" style="margin-top:4px">Minor: Computer Science, Statistics, Business</div>
+          </div>
+          <div class="meta">Expected May 2028</div>
         </div>
-        <div class="card">
-          <h3 style="margin-top:0">Brookwood High School</h3>
-          <p>Class of 2024</p>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="anchor sectionSpacer" id="certifications">
+      <h2>Certifications</h2>
+      <div class="sectionline"></div>
+
+      <div class="stack">
+        <div class="item">
+          <div class="row">
+            <div>
+              <b>Google | Coursera, Professional IT Certificate</b>
+              <div class="muted">2022</div>
+            </div>
+            <div class="meta"><a href="https://coursera.org/share/7c0adde56482bef9ddc1961c4391c631" target="_blank" rel="noreferrer">View</a></div>
+          </div>
+          <p class="muted" style="margin:10px 0 0">
+            Completed the Google IT Support Professional Certificate with foundations in networking, operating systems, system administration, and security.
+          </p>
         </div>
-        <div class="card">
-          <h3 style="margin-top:0">Certifications</h3>
-          <ul style="margin:0 0 8px 18px">
-            <li><span class="cert-btn" data-target="c1">Google | Coursera, Professional IT Certificate, 2022</span></li>
-            <div id="c1" class="cert-desc">Completed the Google IT Support Professional Certificate with foundations in networking, operating systems, system administration, and security. <br>Certification: <a target="_blank" rel="noopener" href="https://coursera.org/share/7c0adde56482bef9ddc1961c4391c631">View Credential</a></div>
-            <li style="margin-top:8px"><span class="cert-btn" data-target="c2">UC Davis | Coursera, SQL for Data Science, 2025</span></li>
-            <div id="c2" class="cert-desc">Hands on SQL for analysis including filtering, grouping, joins, and date and string functions. <br>Certification: <a target="_blank" rel="noopener" href="https://coursera.org/share/9cffd5e21ecd0db993b8a72ceee403e7">View Credential</a></div>
-            <li style="margin-top:8px"><span class="cert-btn" data-target="c3">IBM | Coursera, Data Science Specialization, 2025</span></li>
-            <div id="c3" class="cert-desc">Twelve course sequence across Python, SQL, machine learning, and visualization with end to end projects. <br>Certification: <a target="_blank" rel="noopener" href="https://coursera.org/share/3e181b2f28d9f5a1ee939dd4a4f8ffd3">View Credential</a></div>
-          </ul>
+
+        <div class="item">
+          <div class="row">
+            <div>
+              <b>UC Davis | Coursera, SQL for Data Science</b>
+              <div class="muted">2025</div>
+            </div>
+            <div class="meta"><a href="https://coursera.org/share/9cffd5e21ecd0db993b8a72ceee403e7" target="_blank" rel="noreferrer">View</a></div>
+          </div>
+          <p class="muted" style="margin:10px 0 0">
+            Hands on SQL for analysis including filtering, grouping, joins, and date and string functions.
+          </p>
+        </div>
+
+        <div class="item">
+          <div class="row">
+            <div>
+              <b>IBM | Coursera, Data Science Specialization</b>
+              <div class="muted">2025</div>
+            </div>
+            <div class="meta"><a href="https://coursera.org/share/3e181b2f28d9f5a1ee939dd4a4f8ffd3" target="_blank" rel="noreferrer">View</a></div>
+          </div>
+          <p class="muted" style="margin:10px 0 0">
+            Twelve course sequence across Python, SQL, machine learning, and visualization with end-to-end projects.
+          </p>
         </div>
       </div>
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" class="reveal show">
-      <h2>Projects</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <h3 style="margin-top:0">Athens Airbnb Market Intelligence Tool</h3>
-          <p><strong>Python, SQL, Streamlit, JMP</strong> | December 2025</p>
-          <p style="margin-bottom:10px"><a target="_blank" rel="noopener" href="https://preetp.me/airbnb">preetp.me/airbnb</a></p>
+    <section class="anchor sectionSpacer" id="projects">
+      <div class="featuredWrap">
+        <h2 class="featuredTitle">Featured Project: Athens Airbnb Market Intelligence Tool</h2>
+        <div class="sectionline"></div>
+
+        <div class="featuredTop">
+          <div class="featuredTopLeft">
+            <div class="tools">Python, SQL, Streamlit, JMP</div>
+            <div class="linkline">Link: <a href="https://preetp.me/airbnb" target="_blank" rel="noreferrer">preetp.me/airbnb</a></div>
+          </div>
+          <div class="featuredDate">December 2025</div>
+        </div>
+
+        <div class="kpiGrid">
+          <div class="kpiCard">
+            <b>650+ listings</b>
+            <span>Scraped and processed via Apify</span>
+          </div>
+          <div class="kpiCard">
+            <b>SQLite backend</b>
+            <span>Cleaned + stored with Python ETL</span>
+          </div>
+          <div class="kpiCard">
+            <b>Event-driven pricing</b>
+            <span>UGA football, weekends, seasonality, academic calendar</span>
+          </div>
+        </div>
+
+        <h3 class="featuredH3">Problem</h3>
+        <p class="muted">
+          Athens pricing changes a lot around UGA events. Many hosts guess rates or copy nearby listings, which can miss demand spikes or overprice slower weeks.
+          I built a tool that converts local demand signals into day-specific pricing guidance and competitive context.
+        </p>
+
+        <h3 class="featuredH3">What I built (end to end)</h3>
+        <div class="calloutList">
           <ul>
-            <li>Built an end to end pricing intelligence tool to help Athens Airbnb hosts optimize nightly rates using local demand signals.</li>
-            <li>Scraped and processed 650+ Airbnb listings via Apify, cleaning and storing data in a SQLite database using Python.</li>
-            <li>Engineered date level features including weekends, seasonality, UGA football games, and academic calendar events.</li>
-            <li>Trained a multivariable linear regression model to quantify pricing premiums and discounts driven by university events.</li>
-            <li>Validated model significance and distributions using JMP statistical analysis.</li>
-            <li>Developed an interactive Streamlit dashboard that delivers date specific pricing recommendations and competitive insights.</li>
+            <li><b>Data collection:</b> scraped and processed 650+ Airbnb listings via Apify, then cleaned and stored the dataset in SQLite using Python.</li>
+            <li><b>Feature engineering:</b> created date-level features including weekends, seasonality, UGA football games, and academic calendar events.</li>
+            <li><b>Modeling:</b> trained a multivariable linear regression model to estimate pricing premiums and discounts tied to university events.</li>
+            <li><b>Validation:</b> checked model significance and distributions using JMP.</li>
+            <li><b>Product layer:</b> built an interactive Streamlit dashboard that outputs day-specific pricing recommendations and competitive insights.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- SKILLS -->
-    <section id="skills" class="reveal show">
-      <h2>Skills</h2>
-      <div class="card">
-        <div class="chips">
-          <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Jupyter</span>
-          <span class="chip">Data viz</span><span class="chip">Excel</span><span class="chip">Team leadership</span><span class="chip">Time management</span><span class="chip">Video editing</span>
+    <!-- VOLUNTEERING -->
+    <section class="anchor sectionSpacer" id="volunteering">
+      <h2>Volunteering</h2>
+      <div class="sectionline"></div>
+
+      <div class="item">
+        <div class="row">
+          <div>
+            <b>BAPS Atlanta | Group Lead</b>
+            <div class="muted">Volunteer</div>
+          </div>
+          <div class="meta">May 2022 to Present</div>
+        </div>
+
+        <ul>
+          <li>Lead weekly assemblies for young children and support consistent participation.</li>
+          <li>Organize and assist with youth events and programs.</li>
+        </ul>
+
+        <div class="impact">
+          Impact: Built leadership and communication skills through ongoing mentorship and event coordination.
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="reveal show">
-      <h2>Contact</h2>
-      <div class="card">
-        <p><strong>Phone:</strong> <a href="tel:14704694288">470-469-4288</a></p>
-        <p><strong>Email:</strong> <a id="emailLink" href="mailto:preet@preetp.me">preet@preetp.me</a></p>
-        <p><strong>Location:</strong> Athens and Lilburn, GA</p>
-        <p><strong>LinkedIn:</strong> <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/preet-patel726/">linkedin.com/in/preet-patel726</a></p>
+    <!-- SKILLS -->
+    <section class="anchor sectionSpacer" id="skills">
+      <h2>Skills</h2>
+      <div class="sectionline"></div>
+
+      <h3>Core data stack</h3>
+      <div class="chips">
+        <span class="chip">Python</span>
+        <span class="chip">SQL</span>
+        <span class="chip">Pandas</span>
+        <span class="chip">NumPy</span>
+        <span class="chip">SQLite</span>
+        <span class="chip">JMP</span>
+      </div>
+
+      <h3>Analytics and modeling</h3>
+      <div class="chips">
+        <span class="chip">Exploratory Data Analysis</span>
+        <span class="chip">Data Cleaning</span>
+        <span class="chip">Linear Regression</span>
+        <span class="chip">Hypothesis Testing</span>
+      </div>
+
+      <h3>Data product and workflow</h3>
+      <div class="chips">
+        <span class="chip">Streamlit</span>
+        <span class="chip">Dashboard Design</span>
+        <span class="chip">Data Visualization</span>
+        <span class="chip">ETL Pipelines</span>
+        <span class="chip">APIs (REST)</span>
+        <span class="chip">Web Scraping</span>
+        <span class="chip">Git and GitHub</span>
+      </div>
+
+      <h3>Business and operations</h3>
+      <div class="chips">
+        <span class="chip">Market Research</span>
+        <span class="chip">Pricing Analysis</span>
+        <span class="chip">Inventory Tracking</span>
+      </div>
+
+      <h3>Additional</h3>
+      <div class="chips">
+        <span class="chip">Excel (advanced)</span>
+        <span class="chip">Java</span>
+        <span class="chip">Parallel Programming</span>
+        <span class="chip">Leadership</span>
+        <span class="chip">Ownership</span>
+        <span class="chip">Problem Solving</span>
+        <span class="chip">Attention to Detail</span>
+        <span class="chip">Time Management</span>
+        <span class="chip">Customer Focus</span>
+      </div>
+
+      <h3>Languages</h3>
+      <div class="chips">
+        <span class="chip">English (Native)</span>
+        <span class="chip">Gujarati (Native)</span>
+        <span class="chip">Hindi (Proficient)</span>
       </div>
     </section>
-  </main>
 
-  <footer>
-    <div class="container">© <span id="year"></span> Preet Patel, built for internships and growth. Hosted on GitHub.</div>
-  </footer>
+    <footer>
+      Built as a resume companion. Last updated: <span id="date"></span>
+    </footer>
+  </div>
 
   <script>
-    const tabs=[...document.querySelectorAll('.tab')];
-    const secs=tabs.map(t=>document.querySelector(t.getAttribute('href')));
-    tabs.forEach(t=>t.addEventListener('click',e=>{e.preventDefault();document.querySelector(t.getAttribute('href')).scrollIntoView({behavior:'smooth'})}));
-    const onScroll=()=>{const y=scrollY+120;secs.forEach((s,i)=>{if(!s)return;const top=s.offsetTop,b=top+s.offsetHeight;const active=y>=top&&y<b;tabs[i].toggleAttribute('aria-current',active);tabs[i].classList.toggle('active',active);})};
-    addEventListener('scroll',onScroll,{passive:true}); onScroll();
+    // Active nav "bubble" follows the section in view
+    (function(){
+      const navLinks = Array.from(document.querySelectorAll('.navlinks a[data-target]'));
+      const sections = navLinks.map(a => document.getElementById(a.dataset.target)).filter(Boolean);
 
-    const root=document.documentElement,btn=document.getElementById('themeToggle'),modal=document.getElementById('themeModal');
-    const savedTheme=localStorage.getItem('theme');
-    if(savedTheme==='light') root.classList.add('light');
-    if(!savedTheme){setTimeout(()=>modal.classList.add('show'),500);}
-    document.querySelectorAll('.theme-option').forEach(opt=>opt.addEventListener('click',()=>{
-      const theme=opt.dataset.theme;
-      root.classList.toggle('light',theme==='light');
-      localStorage.setItem('theme',theme);
-      modal.classList.remove('show');
-    }));
-    btn.addEventListener('click',()=>{root.classList.toggle('light');localStorage.setItem('theme',root.classList.contains('light')?'light':'dark');});
+      const setActive = (id) => {
+        navLinks.forEach(a => a.classList.toggle('active', a.dataset.target === id));
+      };
 
-    document.querySelectorAll('.cert-btn').forEach(el=>el.addEventListener('click',()=>{
-      const d=document.getElementById(el.dataset.target);
-      d.style.display=d.style.display==='block'?'none':'block';
-    }));
+      const obs = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target?.id) setActive(visible.target.id);
+      }, {
+        root: null,
+        rootMargin: "-35% 0px -55% 0px",
+        threshold: [0.15, 0.25, 0.35, 0.5, 0.65]
+      });
 
-    document.getElementById('year').textContent=new Date().getFullYear();
+      sections.forEach(s => obs.observe(s));
+      navLinks.forEach(a => a.addEventListener('click', () => setActive(a.dataset.target)));
+    })();
 
-    const robs=[...document.querySelectorAll('.reveal')];
-    const io=new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}});
-    },{threshold:.12});
-    robs.forEach(el=>io.observe(el));
+    const d = new Date();
+    const opts = { year: "numeric", month: "long", day: "numeric" };
+    document.getElementById("date").textContent = d.toLocaleDateString(undefined, opts);
   </script>
 </body>
 </html>
