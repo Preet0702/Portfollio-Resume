@@ -389,9 +389,9 @@
       <div class="navlinks" id="navlinks">
         <a class="active" href="#introduction" data-target="introduction">Introduction</a>
         <a href="#experience" data-target="experience">Experience</a>
+        <a href="#projects" data-target="projects">Projects</a>
         <a href="#education" data-target="education">Education</a>
         <a href="#certifications" data-target="certifications">Certifications</a>
-        <a href="#projects" data-target="projects">Projects</a>
         <a href="#volunteering" data-target="volunteering">Volunteering</a>
         <a href="#skills" data-target="skills">Skills</a>
       </div>
@@ -549,6 +549,54 @@
       </div>
     </section>
 
+    <!-- PROJECTS -->
+    <section class="anchor sectionSpacer" id="projects">
+      <div class="featuredWrap">
+        <h2 class="featuredTitle">Featured Project: Athens Airbnb Market Intelligence Tool</h2>
+        <div class="sectionline"></div>
+
+        <div class="featuredTop">
+          <div class="featuredTopLeft">
+            <div class="tools">Python, SQL, Streamlit, JMP</div>
+            <div class="linkline">Link: <a href="https://preetp.me/airbnb" target="_blank" rel="noreferrer">preetp.me/airbnb</a></div>
+          </div>
+          <div class="featuredDate"></div>
+        </div>
+
+        <div class="kpiGrid">
+          <div class="kpiCard">
+            <b>650+ listings</b>
+            <span>Scraped and processed via Apify</span>
+          </div>
+          <div class="kpiCard">
+            <b>SQLite backend</b>
+            <span>Cleaned + stored with Python ETL</span>
+          </div>
+          <div class="kpiCard">
+            <b>Event-driven pricing</b>
+            <span>UGA football, weekends, seasonality, academic calendar</span>
+          </div>
+        </div>
+
+        <h3 class="featuredH3">Problem</h3>
+        <p class="muted">
+          Athens pricing changes a lot around UGA events. Many hosts guess rates or copy nearby listings, which can miss demand spikes or overprice slower weeks.
+          I built a tool that converts local demand signals into day-specific pricing guidance and competitive context.
+        </p>
+
+        <h3 class="featuredH3">What I built </h3>
+        <div class="calloutList">
+          <ul>
+            <li><b>Data collection:</b> scraped and processed 650+ Airbnb listings via Apify, then cleaned and stored the dataset in SQLite using Python.</li>
+            <li><b>Feature engineering:</b> created date-level features including weekends, seasonality, UGA football games, and academic calendar events.</li>
+            <li><b>Modeling:</b> trained a multivariable linear regression model to estimate pricing premiums and discounts tied to university events.</li>
+            <li><b>Validation:</b> checked model significance and distributions using JMP.</li>
+            <li><b>Product layer:</b> built an interactive Streamlit dashboard that outputs day-specific pricing recommendations and competitive insights.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- EDUCATION -->
     <section class="anchor sectionSpacer" id="education">
       <h2>Education</h2>
@@ -609,54 +657,6 @@
           <p class="muted" style="margin:10px 0 0">
             Twelve course sequence across Python, SQL, machine learning, and visualization with projects.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="anchor sectionSpacer" id="projects">
-      <div class="featuredWrap">
-        <h2 class="featuredTitle">Featured Project: Athens Airbnb Market Intelligence Tool</h2>
-        <div class="sectionline"></div>
-
-        <div class="featuredTop">
-          <div class="featuredTopLeft">
-            <div class="tools">Python, SQL, Streamlit, JMP</div>
-            <div class="linkline">Link: <a href="https://preetp.me/airbnb" target="_blank" rel="noreferrer">preetp.me/airbnb</a></div>
-          </div>
-          <div class="featuredDate"></div>
-        </div>
-
-        <div class="kpiGrid">
-          <div class="kpiCard">
-            <b>650+ listings</b>
-            <span>Scraped and processed via Apify</span>
-          </div>
-          <div class="kpiCard">
-            <b>SQLite backend</b>
-            <span>Cleaned + stored with Python ETL</span>
-          </div>
-          <div class="kpiCard">
-            <b>Event-driven pricing</b>
-            <span>UGA football, weekends, seasonality, academic calendar</span>
-          </div>
-        </div>
-
-        <h3 class="featuredH3">Problem</h3>
-        <p class="muted">
-          Athens pricing changes a lot around UGA events. Many hosts guess rates or copy nearby listings, which can miss demand spikes or overprice slower weeks.
-          I built a tool that converts local demand signals into day-specific pricing guidance and competitive context.
-        </p>
-
-        <h3 class="featuredH3">What I built </h3>
-        <div class="calloutList">
-          <ul>
-            <li><b>Data collection:</b> scraped and processed 650+ Airbnb listings via Apify, then cleaned and stored the dataset in SQLite using Python.</li>
-            <li><b>Feature engineering:</b> created date-level features including weekends, seasonality, UGA football games, and academic calendar events.</li>
-            <li><b>Modeling:</b> trained a multivariable linear regression model to estimate pricing premiums and discounts tied to university events.</li>
-            <li><b>Validation:</b> checked model significance and distributions using JMP.</li>
-            <li><b>Product layer:</b> built an interactive Streamlit dashboard that outputs day-specific pricing recommendations and competitive insights.</li>
-          </ul>
         </div>
       </div>
     </section>
